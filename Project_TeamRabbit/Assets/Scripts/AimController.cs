@@ -16,7 +16,7 @@ public class AimController : MonoBehaviour
 
     void Update()
     {
-        Vector3 pos = Input.mousePosition;
+        Vector2 pos = Input.mousePosition;
         imgAim.transform.position = pos;
     }
 }

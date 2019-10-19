@@ -13,9 +13,13 @@ public class GameManager : MonoBehaviour
 
     [Header("UI")]
     [SerializeField]
-    Image bgLife;
     Image imgLife;
-    float life_Offset = 0f;
+
+    [SerializeField]
+    Image bgLife;
+
+    [SerializeField]
+    Vector2 life_Offset = new Vector2(2, -13);
 
     [SerializeField]
     WeaponSlot[] slots;
@@ -47,8 +51,6 @@ public class GameManager : MonoBehaviour
         //ObjectPool.Get.AddObjectPool(GunType.Arrow + "Bullet");
         ObjectPool.Get.AddObjectPool("GroundHit");
         ObjectPool.Get.AddObjectPool("ZombieHit");
-
-        imgLife = bgLife.GetComponentInChildren<Image>();
     }
 
     void Update()
@@ -58,8 +60,8 @@ public class GameManager : MonoBehaviour
 
     public void ShowLife()
     {
-        Vector3 pos = player.transform.position;
-        bgLife.transform.position = pos;
+        Vector2 pos = player.transform.position;
+        bgLife.transform.position = pos + life_Offset;
         // 임시 세팅
         imgLife.fillAmount = 0.7f;
     }
