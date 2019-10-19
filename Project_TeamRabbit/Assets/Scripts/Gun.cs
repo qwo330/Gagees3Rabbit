@@ -1,4 +1,5 @@
-﻿
+﻿using UnityEngine;
+
 public enum GunType
 {
     Revolver = 1,
@@ -8,28 +9,34 @@ public enum GunType
     Arrow = 5,
 }
 
-public class Gun
+[System.Serializable]
+public class Gun : MonoBehaviour
 {
-    public float demage;
-    public float speed; // 공격딜레이
-    public int range;
-    public bool isSingleShot; // 단발:t, 연발:f
-    public int getBullet; // 획득탄수
-    public int addBullet; // 추가탄수
-    public float dropPercent;
+    public float Demage;
+    public float Speed; // 공격딜레이
+    public int Range;
+    public bool IsSingleShot; // 단발:t, 연발:f
+    public int GetBullet; // 획득탄수
+    public int AddBullet; // 추가탄수
+    public float DropPercent;
+
+    public GunType Type;
+    public Transform MuzzlePos;
 }
 
 public class Revolver : Gun
 {
     public Revolver()
     {
-        demage = 1;
-        speed = 1;
-        range = 1;
-        isSingleShot = true;
-        getBullet = 0;
-        addBullet = 0;
-        dropPercent = 0;
+        Demage = 1;
+        Speed = 1;
+        Range = 1;
+        IsSingleShot = true;
+        GetBullet = 0;
+        AddBullet = 0;
+        DropPercent = 0;
+
+        Type = GunType.Revolver;
     }
 }
 
@@ -37,13 +44,15 @@ public class Carbine : Gun
 {
     public Carbine()
     {
-        demage = 2;
-        speed = 0.25f;
-        range = 1;
-        isSingleShot = false;
-        getBullet = 200;
-        addBullet = 100;
-        dropPercent = .1f;
+        Demage = 2;
+        Speed = 0.25f;
+        Range = 1;
+        IsSingleShot = false;
+        GetBullet = 200;
+        AddBullet = 100;
+        DropPercent = .1f;
+
+        Type = GunType.Carbine;
     }
 }
 
@@ -51,13 +60,15 @@ public class SniperRifle : Gun
 {
     public SniperRifle()
     {
-        demage = 99999;
-        speed = 1;
-        range = 1;
-        isSingleShot = true;
-        getBullet = 10;
-        addBullet = 4;
-        dropPercent = 0.015f;
+        Demage = 99999;
+        Speed = 1;
+        Range = 1;
+        IsSingleShot = true;
+        GetBullet = 10;
+        AddBullet = 4;
+        DropPercent = 0.015f;
+
+        Type = GunType.SniperRifle;
     }
 }
 
@@ -65,13 +76,15 @@ public class Shotgun : Gun
 {
     public Shotgun()
     {
-        demage = 1;
-        speed = 1;
-        range = 5;
-        isSingleShot = true;
-        getBullet = 20;
-        addBullet = 10;
-        dropPercent = 0.07f;
+        Demage = 1;
+        Speed = 1;
+        Range = 5;
+        IsSingleShot = true;
+        GetBullet = 20;
+        AddBullet = 10;
+        DropPercent = 0.07f;
+
+        Type = GunType.Shotgun;
     }
 }
 
@@ -79,12 +92,14 @@ public class Arrow : Gun
 {
     public Arrow()
     {
-        demage = 10;
-        speed = 1;
-        range = 1;
-        isSingleShot = true;
-        getBullet = 10;
-        addBullet = 4;
-        dropPercent = 0.06f;
+        Demage = 10;
+        Speed = 1;
+        Range = 1;
+        IsSingleShot = true;
+        GetBullet = 10;
+        AddBullet = 4;
+        DropPercent = 0.06f;
+
+        Type = GunType.Arrow;
     }
 }
