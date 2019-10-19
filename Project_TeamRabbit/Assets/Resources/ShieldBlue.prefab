@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6068215927410444746}
   - component: {fileID: 6068215927391056606}
   - component: {fileID: 6068215927392740946}
+  - component: {fileID: 1342418609329222615}
   m_Layer: 0
   m_Name: ShieldBlue
   m_TagString: Untagged
@@ -4573,6 +4574,19 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!114 &1342418609329222615
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6068215927410535606}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d96d02b6c64ad534f8b83b872b9cfd70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  delay: 5
 --- !u!1 &6068215927410541964
 GameObject:
   m_ObjectHideFlags: 0

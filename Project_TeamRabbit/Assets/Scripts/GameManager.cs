@@ -52,6 +52,8 @@ public class GameManager : MonoBehaviour
         //ObjectPool.Get.AddObjectPool(GunType.Arrow + "Bullet");
         ObjectPool.Get.AddObjectPool("GroundHit");
         ObjectPool.Get.AddObjectPool("ZombieHit");
+        ObjectPool.Get.AddObjectPool("HealEffect");
+        ObjectPool.Get.AddObjectPool("ShieldBlue");
     }
 
     void Update()

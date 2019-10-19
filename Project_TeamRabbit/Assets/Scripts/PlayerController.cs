@@ -22,6 +22,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float _currHP;
     [SerializeField] float _maxHP = 100;
 
+    bool isInvincible = false;
+    float leftTimeInvincible = 0;
+
     private void Awake()
     {
         rigi2d = GetComponent<Rigidbody2D>();
@@ -34,10 +37,23 @@ public class PlayerController : MonoBehaviour
 
     private void Initialize()
     {
+        _currHP = _maxHP;
+
         _weaponController.Set_CurrentWeapon(GunType.Revolver);
 
         StartCoroutine(IE_PlayerController());
         StartCoroutine(IE_WeaponSwap());
+    }
+
+    public void TakeDamage(float damage)
+    {
+        if (isInvincible) return;
+
+        _currHP -= damage;
+        if(_currHP <= 0)
+        {
+            //게임오버
+        }
     }
 
     IEnumerator IE_PlayerController()
@@ -114,6 +130,40 @@ public class PlayerController : MonoBehaviour
     public Gun Get_ListWeapon(int listIndex)
     {
         return _weaponList[listIndex].GetComponent<Gun>();
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.gameObject.layer.Equals(LayerMask.NameToLayer("Item")))
+        {
+            Debug.Log(other.gameObject.name);
+            switch(other.gameObject.name)
+            {
+                case "Item_HealPack":
+                    if (_currHP <= 0) return; 
+                    _currHP += 10;
+                    if (_currHP > _maxHP) _currHP = _maxHP;
+                    break;
+                case "Item_Shield":
+                    if (isInvincible) leftTimeInvincible = 5;
+                    else StartCoroutine(IE_Set_Invincible());
+                    break;
+            }
+
+            other.gameObject.SetActive(false);
+        }
+    }
+
+    IEnumerator IE_Set_Invincible()
+    {
+        isInvincible = true;
+        leftTimeInvincible = 5;
+
+        while(leftTimeInvincible >= 0)
+        {
+            leftTimeInvincible -= Time.deltaTime;
+            yield return null;
+        }
     }
 }
 
