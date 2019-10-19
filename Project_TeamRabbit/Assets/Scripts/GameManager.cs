@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     Text txtScore, txtKillCount, txtDistance;
 
     [Header("UI")]
+    [SerializeField]
     WeaponSlot[] slots;
 
     int distance;
