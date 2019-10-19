@@ -36,6 +36,7 @@ public class GameManager : MonoBehaviour
         //ObjectPool.Get.AddObjectPool(GunType.SniperRifle + "Bullet");
         //ObjectPool.Get.AddObjectPool(GunType.Shotgun + "Bullet");
         //ObjectPool.Get.AddObjectPool(GunType.Arrow + "Bullet");
+        ObjectPool.Get.AddObjectPool("Blood");
     }
 
     void Update()

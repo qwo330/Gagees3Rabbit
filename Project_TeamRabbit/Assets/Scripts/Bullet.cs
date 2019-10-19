@@ -12,12 +12,18 @@ public class Bullet : MonoBehaviour
     }
 
     public float Get_Damage() { return _damage; }
-
-    public void OnTriggerEnter(Collider other)
+    
+    private void OnTriggerEnter2D(Collider2D other)
     {
         if(other.gameObject.layer.Equals(LayerMask.NameToLayer("Monster")))
         {
             other.GetComponent<Monster>().TakeDamage(_damage);
+
+            GameObject effect = ObjectPool.Get.GetObject("Blood");
+            effect.transform.position = other.transform.position;
+            effect.SetActive(true);
+
+            ObjectPool.Get.ReturnObject(gameObject);
             gameObject.SetActive(false);
         }
     }

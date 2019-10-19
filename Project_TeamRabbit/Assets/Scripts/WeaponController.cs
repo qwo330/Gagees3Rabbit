@@ -9,8 +9,7 @@ public class WeaponController : MonoBehaviour
 
     [Header("Weapon")]
     [SerializeField] Gun currWeapon;
-
-
+    
     Vector3 leftDir, rightDir;
 
     private void Awake()
@@ -23,6 +22,25 @@ public class WeaponController : MonoBehaviour
     void Start()
     {
         StartCoroutine(IE_WeaponProcess());
+    }
+
+    public void Set_CurrentWeapon(GunType gunCode)
+    {
+        switch (gunCode)
+        {
+            case GunType.Revolver:
+                player.SetActive_Weapon(0);
+                break;
+            case GunType.Carbine:
+
+                break;
+            case GunType.SniperRifle:
+
+                break;
+            case GunType.Shotgun:
+
+                break;
+        }
     }
 
     IEnumerator IE_WeaponProcess()

@@ -4,12 +4,16 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    [Header("Component")]
     [SerializeField] GroundCheck _groundCheck;
+    [SerializeField] WeaponController _weaponController;
+    [SerializeField] GameObject[] _weaponList;
 
     Rigidbody2D rigi2d;
 
     bool isGround = false;
 
+    [Header("Parameters")]
     Vector2 dir;
     Vector2 velocity;
     float v, h;
@@ -47,6 +51,26 @@ public class PlayerController : MonoBehaviour
             transform.Translate(dir * Time.deltaTime);
 
             yield return null;
+        }
+    }
+
+    IEnumerator IE_WeaponSwap()
+    {
+        while(true)
+        {
+
+        }
+    }
+
+    public void SetActive_Weapon(int listIndex)
+    {
+        for(int i = 0; i < _weaponList.Length; i++)
+        {
+            if (i == listIndex)
+            {
+                _weaponList[i].SetActive(true);
+            }
+            else _weaponList[i].SetActive(false);
         }
     }
 }
