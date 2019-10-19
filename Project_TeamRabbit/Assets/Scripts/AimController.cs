@@ -16,7 +16,7 @@ public class AimController : MonoBehaviour
 
     void Update()
     {
-        Vector2 pos = Input.mousePosition;
+        Vector2 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         imgAim.transform.position = pos;
     }
 }
