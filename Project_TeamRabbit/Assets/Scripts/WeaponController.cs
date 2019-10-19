@@ -9,7 +9,8 @@ public class WeaponController : MonoBehaviour
 
     [Header("Weapon")]
     [SerializeField] Gun currWeapon;
-    
+    float fireCoolTime = 0;
+
     Vector3 leftDir, rightDir;
 
     private void Awake()
@@ -63,7 +64,7 @@ public class WeaponController : MonoBehaviour
             transform.rotation = Quaternion.Euler(0, 0, AngleDeg);
 
             //마우스 위치에 따른 무기 및 팔 방향 보정
-            if (transform.eulerAngles.z < 90 && transform.eulerAngles.z > -90)
+            if (mouseScreenPosition.x - player.transform.position.x > 0)
             {
                 player.transform.localScale = rightDir;
                 armTr.localEulerAngles = new Vector3(0, 0, 0);
@@ -74,12 +75,43 @@ public class WeaponController : MonoBehaviour
                 armTr.localEulerAngles = new Vector3(0, 0, 180);
             }
 
-            if (Input.GetMouseButtonDown(0))
-            {
-                Fire();
-            }
+            Fire_Ready();
+            if (fireCoolTime > 0) fireCoolTime -= Time.deltaTime;
 
             yield return null;
+        }
+    }
+
+    void Fire_Ready()
+    {
+        switch (currWeapon.Type)
+        {
+            case GunType.Revolver:
+                if(Input.GetMouseButtonDown(0))
+                {
+                    Fire();
+                }
+                break;
+            case GunType.Shotgun:
+                if (Input.GetMouseButton(0))
+                {
+                    if (fireCoolTime <= 0)
+                    {
+                        Fire_ShotGun();
+                        fireCoolTime = currWeapon.Delay;
+                    }
+                }
+                break;
+            default:
+                if(Input.GetMouseButton(0))
+                {
+                    if(fireCoolTime <= 0)
+                    {
+                        Fire();
+                        fireCoolTime = currWeapon.Delay;
+                    }
+                }
+                break;
         }
     }
 
@@ -95,5 +127,10 @@ public class WeaponController : MonoBehaviour
         bullet.SetActive(true);
 
         bullet.GetComponent<Rigidbody2D>().AddForce(dir * currWeapon.BulletSpeed, ForceMode2D.Impulse);
+    }
+
+    void Fire_ShotGun()
+    {
+
     }
 }
