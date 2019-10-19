@@ -116,8 +116,22 @@ public class Monster : MonoBehaviour
                  
             yield return new WaitForSeconds(_attackAnim);
 
-            distance = Vector2.Distance(transform.position, _target.transform.position);
-            if (distance <= _attackDist) _target.TakeDamage(_damage);
+            if (isBoneThrower)
+            {
+                GameObject bullet = ObjectPool.Get.GetObject("Zombie_Bone");
+                bullet.transform.position = transform.position;
+
+                Vector2 dir = _target.transform.position - transform.position;
+                dir.Normalize();
+
+                bullet.GetComponent<Rigidbody2D>().AddForce(dir * 100 * Time.deltaTime, ForceMode2D.Impulse);
+
+            }
+            else
+            {
+                distance = Vector2.Distance(transform.position, _target.transform.position);
+                if (distance <= _attackDist) _target.TakeDamage(_damage);
+            }
 
             if(isBoneThrower) yield return new WaitForSeconds(1 - _attackAnim);
             else yield return new WaitForSeconds(0.7f - _attackAnim);

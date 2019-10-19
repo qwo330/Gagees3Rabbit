@@ -62,6 +62,8 @@ public class GameManager : MonoBehaviour
         ObjectPool.Get.AddObjectPool("HealEffect");
         ObjectPool.Get.AddObjectPool("ShieldBlue");
         ObjectPool.Get.AddObjectPool("Zombie");
+        ObjectPool.Get.AddObjectPool("Zombie_Throw");
+        ObjectPool.Get.AddObjectPool("Zombie_Bone");
     }
 
     void Update()

@@ -246,11 +246,11 @@ MonoBehaviour:
   _groundCheck: {fileID: 5544008209974649622}
   _animator: {fileID: 5544008208974831883}
   _state: 0
-  _speed: 3
-  _attackDist: 1
-  _damage: 4
+  _speed: 2
+  _attackDist: 6
+  _damage: 2
   _currHP: 0
-  _maxHP: 5
+  _maxHP: 10
   isBoneThrower: 1
 --- !u!1 &5544008209974649623
 GameObject:
