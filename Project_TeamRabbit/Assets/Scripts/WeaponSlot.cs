@@ -14,11 +14,9 @@ public class WeaponSlot : MonoBehaviour
     [SerializeField]
     GameObject goDisable;
 
-    public void ShowRemainBullet()
+    public void ShowRemainBullet(int count)
     {
-        // todo: player에서 각 무기의 남은 탄수 획득
-        //int index = (int)type;
-        //txtBulletCount.text = 
+        txtBulletCount.text = count.ToString();
     }
 
     public void SlotActive(GunType type)

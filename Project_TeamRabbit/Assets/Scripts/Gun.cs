@@ -17,6 +17,7 @@ public class Gun : MonoBehaviour
     public float Delay; // 공격딜레이
     public int Range;
     public bool IsSingleShot; // 단발:t, 연발:f
+    public int BulletCount;
     public int GetBullet; // 획득탄수
     public int AddBullet; // 추가탄수
     public float DropPercent;
