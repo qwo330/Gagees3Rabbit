@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ObjectPool : MonoBehaviour
 {
-    const string _prefapPath = "Resources/";
+    //const string _prefapPath = "/";
     const int defaultCount = 30;
 
     static ObjectPool instance;
@@ -47,10 +47,9 @@ public class ObjectPool : MonoBehaviour
             Pool.Add(name, stack);
         }
 
-        string path = _prefapPath + name;
         for (int i = 0; i < count; i++)
         {
-            GameObject prefab = Resources.Load(path) as GameObject;
+            GameObject prefab = Resources.Load(name) as GameObject;
             prefab.name = name;
             stack.Push(prefab);
         }
