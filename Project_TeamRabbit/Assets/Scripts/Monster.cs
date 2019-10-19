@@ -39,9 +39,12 @@ public class Monster : MonoBehaviour
     }
     
     public void Initialize()
-    {   
+    {
+        GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         _currHP = _maxHP;
-        StateMachine(State.Move);
+
+        if(_groundCheck.isGround) StateMachine(State.Fall);
+        else StateMachine(State.Move);
 
         if (isBoneThrower) _attackAnim = 0.67f;
         else _attackAnim = 0.467f;
@@ -99,11 +102,9 @@ public class Monster : MonoBehaviour
             transform.Translate(dir * _speed * Time.deltaTime);
 
             distance = Vector2.Distance(transform.position, _target.transform.position);
-
+            if(distance <= _attackDist) StateMachine(State.Attack);
             yield return null;
         }
-
-        StateMachine(State.Attack);
     }
 
     IEnumerator IE_Attack()

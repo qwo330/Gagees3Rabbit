@@ -33,7 +33,7 @@ public class MonsterSpawn : MonoBehaviour
             if (!go.activeInHierarchy) go.SetActive(true);
             zombie.Initialize();
             //int dir = Random.Range(0, 1);
-            go.transform.position = GetSpawnPoint();
+            zombie.transform.position = GetSpawnPoint();
         }
     }
 
@@ -48,7 +48,7 @@ public class MonsterSpawn : MonoBehaviour
             if (!go.activeInHierarchy) go.SetActive(true);
             zombie.Initialize();
             //int dir = Random.Range(0, 1);
-            go.transform.position = GetSpawnPoint();
+            zombie.transform.position = GetSpawnPoint();
         }
     }
 
