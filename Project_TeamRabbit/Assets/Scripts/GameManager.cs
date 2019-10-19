@@ -39,36 +39,6 @@ public class GameManager : MonoBehaviour
         ObjectPool.Get.AddObjectPool("Blood");
     }
 
-    void Update()
-    {
-        if (Input.anyKey)
-            SwapWeapon();
-    }
-
-    void SwapWeapon()
-    {
-        if (Input.GetKey(KeyCode.Alpha1))
-        {
-            WriteLog("권총");
-        }
-        else if(Input.GetKey(KeyCode.Alpha2))
-        {
-            WriteLog("카빈");
-        }
-        else if (Input.GetKey(KeyCode.Alpha3))
-        {
-            WriteLog("저격");
-        }
-        else if (Input.GetKey(KeyCode.Alpha4))
-        {
-            WriteLog("샷건");
-        }
-        else if (Input.GetKey(KeyCode.Alpha5))
-        {
-            WriteLog("활");
-        }
-    }
-
     //public void AddMoney(int value)
     //{
     //    money += value;
