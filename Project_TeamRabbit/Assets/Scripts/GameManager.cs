@@ -13,6 +13,11 @@ public class GameManager : MonoBehaviour
 
     [Header("UI")]
     [SerializeField]
+    Image bgLife;
+    Image imgLife;
+    float life_Offset = 0f;
+
+    [SerializeField]
     WeaponSlot[] slots;
 
     int distance;
@@ -41,6 +46,21 @@ public class GameManager : MonoBehaviour
         //ObjectPool.Get.AddObjectPool(GunType.Shotgun + "Bullet");
         //ObjectPool.Get.AddObjectPool(GunType.Arrow + "Bullet");
         ObjectPool.Get.AddObjectPool("Blood");
+
+        imgLife = bgLife.GetComponentInChildren<Image>();
+    }
+
+    void Update()
+    {
+        ShowLife();
+    }
+
+    public void ShowLife()
+    {
+        Vector3 pos = player.transform.position;
+        bgLife.transform.position = pos;
+        // 임시 세팅
+        imgLife.fillAmount = 0.7f;
     }
 
     public void ShowRemainBullet()
