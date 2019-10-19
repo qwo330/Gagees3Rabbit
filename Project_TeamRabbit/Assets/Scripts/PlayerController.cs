@@ -118,8 +118,6 @@ public class PlayerController : MonoBehaviour
                     _weaponController.Set_CurrentWeapon(GunType.SniperRifle);
                     swapCoolTime = maxCoolTime;
                 }
-                if (Input.GetKeyDown(KeyCode.Alpha0))
-                    TakeDamage(0);
             }
             else swapCoolTime -= Time.deltaTime;
 
