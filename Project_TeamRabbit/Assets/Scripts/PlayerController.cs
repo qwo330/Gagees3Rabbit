@@ -22,8 +22,13 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float _currHP;
     [SerializeField] float _maxHP = 100;
 
+    bool isHit = false;
+
     bool isInvincible = false;
     float leftTimeInvincible = 0;
+
+    [Header("Header")]
+    [SerializeField] Material playerMat;
 
     private void Awake()
     {
@@ -48,11 +53,16 @@ public class PlayerController : MonoBehaviour
     public void TakeDamage(float damage)
     {
         if (isInvincible) return;
+        if (isHit) return;
 
         _currHP -= damage;
         if(_currHP <= 0)
         {
             //게임오버
+        }
+        else
+        {
+            StartCoroutine(IE_Set_Hit());
         }
     }
 
@@ -108,6 +118,8 @@ public class PlayerController : MonoBehaviour
                     _weaponController.Set_CurrentWeapon(GunType.SniperRifle);
                     swapCoolTime = maxCoolTime;
                 }
+                if (Input.GetKeyDown(KeyCode.Alpha0))
+                    TakeDamage(0);
             }
             else swapCoolTime -= Time.deltaTime;
 
@@ -136,18 +148,24 @@ public class PlayerController : MonoBehaviour
     {
         if(other.gameObject.layer.Equals(LayerMask.NameToLayer("Item")))
         {
+            GameObject effect = null;
+
             switch(other.gameObject.name)
             {
                 case "Item_HealPack":
                     if (_currHP <= 0) return;
                     _currHP += 10;
                     if (_currHP > _maxHP) _currHP = _maxHP;
-                    ObjectPool.Get.GetObject("HealEffect");
+                    effect = ObjectPool.Get.GetObject("HealEffect");
+                    effect.transform.position = transform.position;
+                    effect.SetActive(true);
                     break;
                 case "Item_Shield":
                     if (isInvincible) leftTimeInvincible = 5;
                     else StartCoroutine(IE_Set_Invincible());
-                    ObjectPool.Get.GetObject("ShieldBlue");
+                    effect = ObjectPool.Get.GetObject("ShieldBlue");
+                    effect.transform.position = transform.position;
+                    effect.SetActive(true);
                     break;
             }
 
@@ -165,6 +183,21 @@ public class PlayerController : MonoBehaviour
             leftTimeInvincible -= Time.deltaTime;
             yield return null;
         }
+    }
+
+    IEnumerator IE_Set_Hit()
+    {
+        isHit = true;
+
+        playerMat.color = new Color(playerMat.color.r, playerMat.color.g, playerMat.color.b, 0.5f);
+
+        if (transform.localScale.x < 0) transform.eulerAngles = new Vector3(0, 0, -10);
+        else transform.eulerAngles = new Vector3(0, 0, 10);
+
+        yield return new WaitForSeconds(0.1f);
+        transform.eulerAngles = new Vector3(0, 0, 0);
+        playerMat.color = new Color(playerMat.color.r, playerMat.color.g, playerMat.color.b, 1);
+        isHit = false;
     }
 }
 
