@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour
     {
         instance = this;
         DontDestroyOnLoad(this);
-        ObjectPool.Get.CreateObjectPool();
+       // ObjectPool.Get.CreateObjectPool();
     }
 
     void Update()
