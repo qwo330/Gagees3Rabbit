@@ -5,6 +5,7 @@ using UnityEngine;
 public class Monster : MonoBehaviour
 {
     [Header("Component")]
+    [SerializeField] PlayerController _target;
     [SerializeField] GroundCheck _groundCheck;
 
     enum State
@@ -17,7 +18,7 @@ public class Monster : MonoBehaviour
     }
 
     [Header("Parameters")]
-    State _state;
+    [SerializeField] State _state;
     [SerializeField] float _speed = 4f;
 
     [SerializeField] float _attackDist = 1.2f;
@@ -28,11 +29,12 @@ public class Monster : MonoBehaviour
 
     private void Start()
     {
+        _target = GameManager.Get.player;
         Initialize();
     }
     
     private void Initialize()
-    {
+    {   
         _currHP = _maxHP;
         StateMachine(State.Move);
     }
@@ -50,7 +52,8 @@ public class Monster : MonoBehaviour
 
     void StateMachine(State next)
     {
-        switch(next)
+        _state = next;
+        switch(_state)
         {
             case State.Idle:
 
@@ -59,7 +62,7 @@ public class Monster : MonoBehaviour
                 StartCoroutine(IE_Move());
                 break;
             case State.Attack:
-
+                StartCoroutine(IE_Attack());
                 break;
             case State.Dead:
 
@@ -72,11 +75,19 @@ public class Monster : MonoBehaviour
 
     IEnumerator IE_Move()
     {
-        Vector2 dir;
+        distance = Vector2.Distance(transform.position, _target.transform.position);
 
         while(_state.Equals(State.Move))
         {
             if (!_groundCheck.isGround) StateMachine(State.Fall);
+            if (distance <= _attackDist) StateMachine(State.Attack);
+
+            Vector2 dir = _target.transform.position - transform.position;
+            dir.Normalize();
+
+            transform.Translate(dir * _speed * Time.deltaTime);
+            
+            distance = Vector2.Distance(transform.position, _target.transform.position);
 
             yield return null;
         }
@@ -84,9 +95,24 @@ public class Monster : MonoBehaviour
         StateMachine(State.Attack);
     }
 
+    IEnumerator IE_Attack()
+    {
+        while (_state.Equals(State.Attack))
+        {
+            if (distance > _attackDist) StateMachine(State.Move);
+                 
+            yield return new WaitForSeconds(1.5f);
+
+            distance = Vector2.Distance(transform.position, _target.transform.position);
+        }
+    }
+
     IEnumerator IE_Fall()
     {
-        yield return new WaitUntil(() => _groundCheck.isGround);
-        StateMachine(State.Move);
+        while (_state.Equals(State.Fall))
+        {
+            if(_groundCheck.isGround) StateMachine(State.Move);
+            yield return null;
+        }
     }
 }

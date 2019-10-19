@@ -7,6 +7,12 @@ public class WeaponController : MonoBehaviour
     [SerializeField] PlayerController player;
     [SerializeField] Transform armTr;
 
+    [Header("Weapon")]
+    [SerializeField] Transform sampleFireStart;
+    [SerializeField] Transform sampleFireEnd;
+    [SerializeField] GameObject bullet;
+    [SerializeField] float bulletSampleSpeed = 50f;
+
     Vector3 leftDir, rightDir;
 
     private void Awake()
@@ -38,13 +44,11 @@ public class WeaponController : MonoBehaviour
             //마우스 위치에 따른 무기 및 팔 방향 보정
             if (!(transform.eulerAngles.z < 90 && transform.eulerAngles.z > -90))
             {
-                //player.transform.localEulerAngles = new Vector3(0, 0, 180);
                 player.transform.localScale = leftDir;
                 armTr.localEulerAngles = new Vector3(0, 0, 180);
             }
             else
             {
-                //player.transform.localEulerAngles = new Vector3(0, 0, 0);
                 player.transform.localScale = rightDir;
                 armTr.localEulerAngles = new Vector3(0, 0, 0);
             }
@@ -60,6 +64,14 @@ public class WeaponController : MonoBehaviour
 
     void Fire()
     {
+        Vector2 dir = sampleFireEnd.position - sampleFireStart.position;
+        dir.Normalize();
 
+        GameObject newOne = Instantiate(bullet);
+        newOne.transform.position = sampleFireStart.position;
+        newOne.transform.rotation = transform.rotation;
+        newOne.SetActive(true);
+
+        newOne.GetComponent<Rigidbody2D>().AddForce(dir * bulletSampleSpeed, ForceMode2D.Impulse);
     }
 }
