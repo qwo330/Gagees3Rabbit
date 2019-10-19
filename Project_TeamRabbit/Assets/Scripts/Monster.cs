@@ -83,6 +83,7 @@ public class Monster : MonoBehaviour
         }
     }
 
+    float ratio = 0;
     IEnumerator IE_Move()
     {
         distance = Vector2.Distance(transform.position, _target.transform.position);
@@ -92,11 +93,14 @@ public class Monster : MonoBehaviour
             if (!_groundCheck.isGround) StateMachine(State.Fall);
             if (distance <= _attackDist) StateMachine(State.Attack);
 
-            Vector2 dir = _target.transform.position - transform.position;
+            Vector3 dir = _target.transform.position - transform.position;
             dir.Normalize();
 
-            transform.Translate(dir * _speed * Time.deltaTime);
-            
+            //transform.Translate(dir * _speed * Time.deltaTime);
+            ratio += Time.deltaTime;
+            Debug.Log(ratio);
+            Vector3.Lerp(transform.position, _target.transform.position, ratio);
+
             distance = Vector2.Distance(transform.position, _target.transform.position);
 
             yield return null;
