@@ -11,6 +11,9 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     Text txtScore, txtKillCount;//, txtMoney;
 
+    [Header("UI")]
+    WeaponSlot[] slots;
+
     //int money;
     int killCount;
     int score;
@@ -48,6 +51,12 @@ public class GameManager : MonoBehaviour
     //{
     //    txtScore.text = money.ToString();
     //}
+
+    public void ChangeWeapon()
+    {
+        foreach (var slot in slots)
+            slot.SlotActive(false);
+    }
 
     public void AddScore(int value)
     {
