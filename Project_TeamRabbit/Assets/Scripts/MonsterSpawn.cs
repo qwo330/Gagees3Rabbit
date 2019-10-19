@@ -30,6 +30,7 @@ public class MonsterSpawn : MonoBehaviour
 
             GameObject go = ObjectPool.Get.GetObject("Zombie");
             Monster zombie = go.GetComponent<Monster>();
+            if (!go.activeInHierarchy) go.SetActive(true);
             zombie.Initialize();
             //int dir = Random.Range(0, 1);
             zombie.transform.position = GetSpawnPoint();

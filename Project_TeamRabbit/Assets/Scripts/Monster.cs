@@ -7,6 +7,7 @@ public class Monster : MonoBehaviour
     [Header("Component")]
     [SerializeField] PlayerController _target;
     [SerializeField] GroundCheck _groundCheck;
+    [SerializeField] Animator _animator;
 
     enum State
     {
@@ -22,21 +23,28 @@ public class Monster : MonoBehaviour
     [SerializeField] float _speed = 4f;
 
     [SerializeField] float _attackDist = 1.2f;
+    float _attackAnim;    //애니메이션 공격 포인트
     float distance;
 
+    [SerializeField] float _damage = 4;
     [SerializeField] float _currHP;
     [SerializeField] float _maxHP = 1;
+
+    [Header("Option")]
+    [SerializeField] bool isBoneThrower = false;    //원거리형이라면 true
 
     private void Start()
     {
         _target = GameManager.Get.player;
-        Initialize();
     }
     
     public void Initialize()
     {   
         _currHP = _maxHP;
         StateMachine(State.Move);
+
+        if (isBoneThrower) _attackAnim = 0.67f;
+        else _attackAnim = 0.467f;
     }
 
     public void TakeDamage(float damage)
@@ -65,6 +73,8 @@ public class Monster : MonoBehaviour
                 StartCoroutine(IE_Attack());
                 break;
             case State.Dead:
+                StopAllCoroutines();
+                ObjectPool.Get.ReturnObject(gameObject);
                 gameObject.SetActive(false);
                 break;
             case State.Fall:
@@ -97,13 +107,23 @@ public class Monster : MonoBehaviour
 
     IEnumerator IE_Attack()
     {
+        if (isBoneThrower) _animator.SetTrigger("ATTACK_THROW");
+        else _animator.SetTrigger("ATTACK");
+
         while (_state.Equals(State.Attack))
         {
             if (distance > _attackDist) StateMachine(State.Move);
                  
-            yield return new WaitForSeconds(1.5f);
+            yield return new WaitForSeconds(_attackAnim);
 
             distance = Vector2.Distance(transform.position, _target.transform.position);
+            if (distance <= _attackDist) _target.TakeDamage(_damage);
+
+            if(isBoneThrower) yield return new WaitForSeconds(1 - _attackAnim);
+            else yield return new WaitForSeconds(0.7f - _attackAnim);
+
+            distance = Vector2.Distance(transform.position, _target.transform.position);
+            if(distance > _attackDist) StateMachine(State.Move);
         }
     }
 

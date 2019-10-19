@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 5544008208974831877}
   - component: {fileID: 5544008208974831878}
   m_Layer: 10
-  m_Name: Zombie
+  m_Name: ZombieThrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -251,7 +251,7 @@ MonoBehaviour:
   _damage: 4
   _currHP: 0
   _maxHP: 5
-  isBoneThrower: 0
+  isBoneThrower: 1
 --- !u!1 &5544008209974649623
 GameObject:
   m_ObjectHideFlags: 0
