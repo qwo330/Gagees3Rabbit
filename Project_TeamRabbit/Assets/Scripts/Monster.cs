@@ -96,7 +96,7 @@ public class Monster : MonoBehaviour
             dir.Normalize();
 
             transform.Translate(dir * _speed * Time.deltaTime);
-            
+
             distance = Vector2.Distance(transform.position, _target.transform.position);
 
             yield return null;
@@ -107,8 +107,8 @@ public class Monster : MonoBehaviour
 
     IEnumerator IE_Attack()
     {
-        if (isBoneThrower) _animator.SetTrigger("ATTACK_THROW");
-        else _animator.SetTrigger("ATTACK");
+        //if (isBoneThrower) _animator.SetTrigger("ATTACK_THROW");
+        //else _animator.SetTrigger("ATTACK");
 
         while (_state.Equals(State.Attack))
         {
