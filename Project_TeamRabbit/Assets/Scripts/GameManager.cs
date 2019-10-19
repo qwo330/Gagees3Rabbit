@@ -17,6 +17,8 @@ public class GameManager : MonoBehaviour
     public PlayerController player;
     public GameState gameState = GameState.Play;
 
+    [SerializeField] float swapCoolTime = 1f;
+
     [SerializeField]
     Text txtScore, txtKillCount, txtDistance;
 
@@ -36,6 +38,7 @@ public class GameManager : MonoBehaviour
     int distance;
     int killCount;
     int score;
+    bool swapCool = false;
     #endregion
 
     static GameManager instance;
@@ -84,8 +87,20 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    IEnumerator IE_SwapCooltime()
+    {
+        swapCool = true;
+        yield return new WaitForSeconds(swapCoolTime);
+        swapCool = false;
+    }
+
     public void ChangeWeapon(GunType type)
     {
+        if (swapCool)
+            return;
+
+        StartCoroutine(IE_SwapCooltime());
+
         foreach (var slot in slots)
             slot.SlotActive(type);
     }
@@ -97,7 +112,7 @@ public class GameManager : MonoBehaviour
 
     public void ShowScore()
     {
-        txtScore.text = score + "pts";
+        txtScore.text = score.ToString();
     }
 
     public void AddKillCount()
@@ -112,7 +127,7 @@ public class GameManager : MonoBehaviour
 
     public void ShowDistance()
     {
-        txtDistance.text = distance + "m";
+        txtDistance.text = distance.ToString();
     }
 
     /// <summary>

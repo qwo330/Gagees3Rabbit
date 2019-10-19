@@ -170,7 +170,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   txtBulletCount: {fileID: 4106116149612772}
   type: 1
-  imgDisable: {fileID: 0}
+  imgDisable: {fileID: 7801257088430246355}
 --- !u!1 &8446598892022853285
 GameObject:
   m_ObjectHideFlags: 0
