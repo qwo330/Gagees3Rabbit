@@ -27,7 +27,7 @@ public class Gun : MonoBehaviour
 
     public string Get_BulletName()
     {
-        return Type + "Bullet";
+        return "Bullet";
     }
 }
 

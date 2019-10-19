@@ -235,7 +235,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &53244374
 Transform:
   m_ObjectHideFlags: 0
@@ -313,7 +313,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: ab5dd3ac1c6e0b54e84d5929fa5594a1, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.2589805, g: 1, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -876,8 +876,10 @@ MonoBehaviour:
   - {fileID: 831146197}
   - {fileID: 843855909}
   - {fileID: 53244373}
-  _speed: 5
-  _jumpVelocity: 5
+  _speed: 2
+  _jumpVelocity: 1
+  _currHP: 0
+  _maxHP: 100
 --- !u!50 &609354107
 Rigidbody2D:
   serializedVersion: 4
@@ -942,7 +944,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &831146198
 Transform:
   m_ObjectHideFlags: 0
@@ -1020,7 +1022,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: ab5dd3ac1c6e0b54e84d5929fa5594a1, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0.91119623, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1047,7 +1049,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &843855910
 Transform:
   m_ObjectHideFlags: 0
@@ -1125,7 +1127,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: ab5dd3ac1c6e0b54e84d5929fa5594a1, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1665,10 +1667,10 @@ MonoBehaviour:
   _target: {fileID: 0}
   _groundCheck: {fileID: 1358957415}
   _state: 0
-  _speed: 0.8
+  _speed: 2
   _attackDist: 2
   _currHP: 0
-  _maxHP: 1
+  _maxHP: 5
 --- !u!50 &1296732231
 Rigidbody2D:
   serializedVersion: 4
@@ -2086,7 +2088,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2055956798
 Transform:
   m_ObjectHideFlags: 0
@@ -2254,7 +2256,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 609354106}
   armTr: {fileID: 114555424}
-  currWeapon: {fileID: 2055956800}
+  currWeapon: {fileID: 0}
 --- !u!1 &2145766717
 GameObject:
   m_ObjectHideFlags: 0
