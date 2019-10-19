@@ -8,10 +8,8 @@ public class WeaponController : MonoBehaviour
     [SerializeField] Transform armTr;
 
     [Header("Weapon")]
-    [SerializeField] Transform sampleFireStart;
-    [SerializeField] Transform sampleFireEnd;
-    [SerializeField] GameObject bullet;
-    [SerializeField] float bulletSampleSpeed = 50f;
+    [SerializeField] Gun currWeapon;
+
 
     Vector3 leftDir, rightDir;
 
@@ -64,14 +62,15 @@ public class WeaponController : MonoBehaviour
 
     void Fire()
     {
-        Vector2 dir = sampleFireEnd.position - sampleFireStart.position;
+        Vector2 dir = currWeapon.MuzzleEnd.position - currWeapon.MuzzleStart.position;
         dir.Normalize();
 
-        GameObject newOne = Instantiate(bullet);
-        newOne.transform.position = sampleFireStart.position;
-        newOne.transform.rotation = transform.rotation;
-        newOne.SetActive(true);
+        GameObject bullet = ObjectPool.Get.GetObject(currWeapon.Get_BulletName());
+        bullet.GetComponent<Bullet>().Set_Damage(currWeapon.Demage);
+        bullet.transform.position = currWeapon.MuzzleStart.position;
+        bullet.transform.rotation = transform.rotation;
+        bullet.SetActive(true);
 
-        newOne.GetComponent<Rigidbody2D>().AddForce(dir * bulletSampleSpeed, ForceMode2D.Impulse);
+        bullet.GetComponent<Rigidbody2D>().AddForce(dir * currWeapon.BulletSpeed, ForceMode2D.Impulse);
     }
 }

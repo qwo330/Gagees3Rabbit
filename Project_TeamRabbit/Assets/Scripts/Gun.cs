@@ -13,7 +13,8 @@ public enum GunType
 public class Gun : MonoBehaviour
 {
     public float Demage;
-    public float Speed; // 공격딜레이
+    public float BulletSpeed;
+    public float Delay; // 공격딜레이
     public int Range;
     public bool IsSingleShot; // 단발:t, 연발:f
     public int GetBullet; // 획득탄수
@@ -21,7 +22,13 @@ public class Gun : MonoBehaviour
     public float DropPercent;
 
     public GunType Type;
-    public Transform MuzzlePos;
+    public Transform MuzzleStart;
+    public Transform MuzzleEnd;
+
+    public string Get_BulletName()
+    {
+        return Type + "Bullet";
+    }
 }
 
 public class Revolver : Gun
@@ -29,7 +36,7 @@ public class Revolver : Gun
     public Revolver()
     {
         Demage = 1;
-        Speed = 1;
+        Delay = 1;
         Range = 1;
         IsSingleShot = true;
         GetBullet = 0;
@@ -45,7 +52,7 @@ public class Carbine : Gun
     public Carbine()
     {
         Demage = 2;
-        Speed = 0.25f;
+        Delay = 0.25f;
         Range = 1;
         IsSingleShot = false;
         GetBullet = 200;
@@ -61,7 +68,7 @@ public class SniperRifle : Gun
     public SniperRifle()
     {
         Demage = 99999;
-        Speed = 1;
+        Delay = 1;
         Range = 1;
         IsSingleShot = true;
         GetBullet = 10;
@@ -77,7 +84,7 @@ public class Shotgun : Gun
     public Shotgun()
     {
         Demage = 1;
-        Speed = 1;
+        Delay = 1;
         Range = 5;
         IsSingleShot = true;
         GetBullet = 20;
@@ -93,7 +100,7 @@ public class Arrow : Gun
     public Arrow()
     {
         Demage = 10;
-        Speed = 1;
+        Delay = 1;
         Range = 1;
         IsSingleShot = true;
         GetBullet = 10;
