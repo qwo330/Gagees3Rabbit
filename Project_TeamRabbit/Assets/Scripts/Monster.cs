@@ -83,6 +83,7 @@ public class Monster : MonoBehaviour
         }
     }
 
+    float ratio = 0;
     IEnumerator IE_Move()
     {
         distance = Vector2.Distance(transform.position, _target.transform.position);
@@ -92,10 +93,13 @@ public class Monster : MonoBehaviour
             if (!_groundCheck.isGround) StateMachine(State.Fall);
             if (distance <= _attackDist) StateMachine(State.Attack);
 
-            Vector2 dir = _target.transform.position - transform.position;
+            Vector3 dir = _target.transform.position - transform.position;
             dir.Normalize();
 
-            transform.Translate(dir * _speed * Time.deltaTime);
+            //transform.Translate(dir * _speed * Time.deltaTime);
+            ratio += Time.deltaTime;
+            Debug.Log(ratio);
+            Vector3.Lerp(transform.position, _target.transform.position, ratio);
 
             distance = Vector2.Distance(transform.position, _target.transform.position);
 
@@ -107,8 +111,8 @@ public class Monster : MonoBehaviour
 
     IEnumerator IE_Attack()
     {
-        //if (isBoneThrower) _animator.SetTrigger("ATTACK_THROW");
-        //else _animator.SetTrigger("ATTACK");
+        if (isBoneThrower) _animator.SetTrigger("ATTACK_THROW");
+        else _animator.SetTrigger("ATTACK");
 
         while (_state.Equals(State.Attack))
         {
@@ -116,8 +120,22 @@ public class Monster : MonoBehaviour
                  
             yield return new WaitForSeconds(_attackAnim);
 
-            distance = Vector2.Distance(transform.position, _target.transform.position);
-            if (distance <= _attackDist) _target.TakeDamage(_damage);
+            if (isBoneThrower)
+            {
+                GameObject bullet = ObjectPool.Get.GetObject("Zombie_Bone");
+                bullet.transform.position = transform.position;
+
+                Vector2 dir = _target.transform.position - transform.position;
+                dir.Normalize();
+
+                bullet.GetComponent<Rigidbody2D>().AddForce(dir * 100 * Time.deltaTime, ForceMode2D.Impulse);
+
+            }
+            else
+            {
+                distance = Vector2.Distance(transform.position, _target.transform.position);
+                if (distance <= _attackDist) _target.TakeDamage(_damage);
+            }
 
             if(isBoneThrower) yield return new WaitForSeconds(1 - _attackAnim);
             else yield return new WaitForSeconds(0.7f - _attackAnim);

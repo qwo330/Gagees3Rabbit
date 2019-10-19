@@ -27,8 +27,9 @@ public class PlayerController : MonoBehaviour
     bool isInvincible = false;
     float leftTimeInvincible = 0;
 
-    [Header("Header")]
+    [Header("Effect")]
     [SerializeField] Material playerMat;
+    [SerializeField] GameObject shieldEffect;
 
     private void Awake()
     {
@@ -160,10 +161,7 @@ public class PlayerController : MonoBehaviour
                     break;
                 case "Item_Shield":
                     if (isInvincible) leftTimeInvincible = 5;
-                    else StartCoroutine(IE_Set_Invincible());
-                    effect = ObjectPool.Get.GetObject("ShieldBlue");
-                    effect.transform.position = transform.position;
-                    effect.SetActive(true);
+                    else StartCoroutine(IE_Set_Invincible()); 
                     break;
             }
 
@@ -175,8 +173,9 @@ public class PlayerController : MonoBehaviour
     {
         isInvincible = true;
         leftTimeInvincible = 5;
+        shieldEffect.SetActive(true);
 
-        while(leftTimeInvincible >= 0)
+        while (leftTimeInvincible >= 0)
         {
             leftTimeInvincible -= Time.deltaTime;
             yield return null;
