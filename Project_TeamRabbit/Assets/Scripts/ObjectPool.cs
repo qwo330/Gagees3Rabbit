@@ -21,8 +21,8 @@ public class ObjectPool : MonoBehaviour
 
     public void CreateObjectPool()
     {
-        DontDestroyOnLoad(this);
         Pool = new Dictionary<string, Stack<GameObject>>();
+        //DontDestroyOnLoad(gameObject);
     }
 
     /// <summary>
