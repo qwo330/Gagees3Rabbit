@@ -4,8 +4,8 @@ public enum GunType
 {
     Revolver = 1,
     Carbine = 2,
-    Shotgun = 3,
-    SniperRifle = 4,
+    SniperRifle = 3,
+    Shotgun = 4,
 }
 
 [System.Serializable]
