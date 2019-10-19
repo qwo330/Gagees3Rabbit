@@ -49,14 +49,4 @@ public class namPlayerController : MonoBehaviour
             yield return null;
         }
     }
-
-    //Ground Check
-    private void OnTriggerEnter2D(Collider2D col)
-    {
-        if (col.gameObject.layer.Equals(LayerMask.NameToLayer("Ground")))
-        {
-            isGround = true;
-            v = 0;
-        }
-    }
 }
