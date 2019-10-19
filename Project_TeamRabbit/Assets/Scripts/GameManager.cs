@@ -3,10 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+public enum GameState
+{
+    Play,
+    Clear,
+    Fail,
+    Pause,
+}
+
 public class GameManager : MonoBehaviour
 {
     #region Fields
     public PlayerController player;
+    public GameState gameState = GameState.Play;
 
     [SerializeField]
     Text txtScore, txtKillCount, txtDistance;
