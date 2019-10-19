@@ -136,17 +136,18 @@ public class PlayerController : MonoBehaviour
     {
         if(other.gameObject.layer.Equals(LayerMask.NameToLayer("Item")))
         {
-            Debug.Log(other.gameObject.name);
             switch(other.gameObject.name)
             {
                 case "Item_HealPack":
-                    if (_currHP <= 0) return; 
+                    if (_currHP <= 0) return;
                     _currHP += 10;
                     if (_currHP > _maxHP) _currHP = _maxHP;
+                    ObjectPool.Get.GetObject("HealEffect");
                     break;
                 case "Item_Shield":
                     if (isInvincible) leftTimeInvincible = 5;
                     else StartCoroutine(IE_Set_Invincible());
+                    ObjectPool.Get.GetObject("ShieldBlue");
                     break;
             }
 
