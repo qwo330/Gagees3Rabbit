@@ -3,10 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+public enum GameState
+{
+    Play,
+    Clear,
+    Fail,
+    Pause,
+}
+
 public class GameManager : MonoBehaviour
 {
     #region Fields
     public PlayerController player;
+    public GameState gameState = GameState.Play;
 
     [SerializeField]
     Text txtScore, txtKillCount, txtDistance;
@@ -19,7 +28,7 @@ public class GameManager : MonoBehaviour
     Image bgLife;
 
     [SerializeField]
-    Vector2 life_Offset = new Vector2(2, -13);
+    Vector2 life_Offset = new Vector2(2, -12.4f);
 
     [SerializeField]
     WeaponSlot[] slots;
@@ -46,14 +55,11 @@ public class GameManager : MonoBehaviour
         ObjectPool.Get.CreateObjectPool();
         ObjectPool.Get.AddObjectPool("Bullet");
         ObjectPool.Get.AddObjectPool("ShotGun");
-        //ObjectPool.Get.AddObjectPool(GunType.Carbine + "Bullet");
-        //ObjectPool.Get.AddObjectPool(GunType.SniperRifle + "Bullet");
-        //ObjectPool.Get.AddObjectPool(GunType.Shotgun + "Bullet");
-        //ObjectPool.Get.AddObjectPool(GunType.Arrow + "Bullet");
         ObjectPool.Get.AddObjectPool("GroundHit");
         ObjectPool.Get.AddObjectPool("ZombieHit");
         ObjectPool.Get.AddObjectPool("HealEffect");
         ObjectPool.Get.AddObjectPool("ShieldBlue");
+        ObjectPool.Get.AddObjectPool("Zombie");
     }
 
     void Update()
