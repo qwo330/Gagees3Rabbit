@@ -19,7 +19,7 @@ public class MonsterSpawn : MonoBehaviour
     public void StartSpawn()
     {
         StartCoroutine(IE_Spawn());
-        StartCoroutine(IE_Spawn2());
+        //StartCoroutine(IE_Spawn2());
     }
 
     IEnumerator IE_Spawn()

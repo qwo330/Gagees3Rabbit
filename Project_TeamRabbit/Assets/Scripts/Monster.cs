@@ -96,10 +96,7 @@ public class Monster : MonoBehaviour
             Vector3 dir = _target.transform.position - transform.position;
             dir.Normalize();
 
-            //transform.Translate(dir * _speed * Time.deltaTime);
-            ratio += Time.deltaTime;
-            //Debug.Log(ratio);
-            //Vector3.Lerp(transform.position, _target.transform.position, ratio);
+            transform.Translate(dir * _speed * Time.deltaTime);
 
             distance = Vector2.Distance(transform.position, _target.transform.position);
 
@@ -111,8 +108,8 @@ public class Monster : MonoBehaviour
 
     IEnumerator IE_Attack()
     {
-        if (isBoneThrower) _animator.SetTrigger("ATTACK_THROW");
-        else _animator.SetTrigger("ATTACK");
+        //if (isBoneThrower) _animator.SetTrigger("ATTACK_THROW");
+        //else _animator.SetTrigger("ATTACK");
 
         while (_state.Equals(State.Attack))
         {
