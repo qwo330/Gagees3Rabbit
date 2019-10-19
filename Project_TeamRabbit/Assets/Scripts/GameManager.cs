@@ -29,7 +29,13 @@ public class GameManager : MonoBehaviour
     {
         instance = this;
         DontDestroyOnLoad(this);
-       // ObjectPool.Get.CreateObjectPool();
+
+        ObjectPool.Get.CreateObjectPool();
+        ObjectPool.Get.AddObjectPool(GunType.Revolver + "Bullet");
+        //ObjectPool.Get.AddObjectPool(GunType.Carbine + "Bullet");
+        //ObjectPool.Get.AddObjectPool(GunType.SniperRifle + "Bullet");
+        //ObjectPool.Get.AddObjectPool(GunType.Shotgun + "Bullet");
+        //ObjectPool.Get.AddObjectPool(GunType.Arrow + "Bullet");
     }
 
     void Update()

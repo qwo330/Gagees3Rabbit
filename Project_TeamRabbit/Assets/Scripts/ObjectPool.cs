@@ -12,17 +12,23 @@ public class ObjectPool : MonoBehaviour
     {
         get
         {
-            if (instance == null)
-                instance = new ObjectPool();
+            //if (instance == null)
+            //    instance = new ObjectPool();
             return instance;
         }
     }
+
     Dictionary<string, Stack<GameObject>> Pool;
+
+    void Awake()
+    {
+        instance = this;
+        DontDestroyOnLoad(gameObject);
+    }
 
     public void CreateObjectPool()
     {
         Pool = new Dictionary<string, Stack<GameObject>>();
-        //DontDestroyOnLoad(gameObject);
     }
 
     /// <summary>
@@ -45,8 +51,9 @@ public class ObjectPool : MonoBehaviour
         for (int i = 0; i < count; i++)
         {
             GameObject prefab = Resources.Load(name) as GameObject;
-            prefab.name = name;
-            stack.Push(prefab);
+            GameObject obj = Instantiate(prefab, transform);
+            obj.name = name;
+            stack.Push(obj);
         }
     }
     
