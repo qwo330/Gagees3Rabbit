@@ -12,7 +12,7 @@ public class WeaponSlot : MonoBehaviour
     GunType type;
 
     [SerializeField]
-    GameObject goDisable;
+    Image imgDisable;
 
     public void ShowRemainBullet(int count)
     {
@@ -21,6 +21,11 @@ public class WeaponSlot : MonoBehaviour
 
     public void SlotActive(GunType type)
     {
-        goDisable.SetActive(this.type != type);
+        imgDisable.gameObject.SetActive(this.type != type);
+    }
+
+    void PlayCoolTimeEffect()
+    {
+        //imgDisable.fillAmount = 
     }
 }
