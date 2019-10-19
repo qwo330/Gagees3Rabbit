@@ -15,5 +15,14 @@ public class ObjectPool : MonoBehaviour
         }
     }
 
+    void Awake()
+    {
+        CreateObjectPool();
+        DontDestroyOnLoad(this);
+    }
 
+    public void CreateObjectPool()
+    {
+
+    }
 }
