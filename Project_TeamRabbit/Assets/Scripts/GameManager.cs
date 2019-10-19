@@ -9,9 +9,9 @@ public class GameManager : MonoBehaviour
     public PlayerController player;
 
     [SerializeField]
-    Text txtScore, txtMoney, txtKillCount;
+    Text txtScore, txtKillCount;//, txtMoney;
 
-    int money;
+    //int money;
     int killCount;
     int score;
     #endregion
@@ -62,15 +62,15 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void AddMoney(int value)
-    {
-        money += value;
-    }
+    //public void AddMoney(int value)
+    //{
+    //    money += value;
+    //}
 
-    public void ShowMoney()
-    {
-        txtScore.text = money.ToString();
-    }
+    //public void ShowMoney()
+    //{
+    //    txtScore.text = money.ToString();
+    //}
 
     public void AddScore(int value)
     {
