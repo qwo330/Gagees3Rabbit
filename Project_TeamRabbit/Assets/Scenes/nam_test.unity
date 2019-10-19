@@ -2021,8 +2021,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1991046220}
-  - component: {fileID: 1991046221}
   - component: {fileID: 1991046222}
+  - component: {fileID: 1991046221}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -2256,7 +2256,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 609354106}
   armTr: {fileID: 114555424}
-  currWeapon: {fileID: 0}
+  currWeapon: {fileID: 2055956800}
 --- !u!1 &2145766717
 GameObject:
   m_ObjectHideFlags: 0
