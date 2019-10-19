@@ -9,12 +9,12 @@ public class GameManager : MonoBehaviour
     public PlayerController player;
 
     [SerializeField]
-    Text txtScore, txtKillCount;//, txtMoney;
+    Text txtScore, txtKillCount, txtDistance;
 
     [Header("UI")]
     WeaponSlot[] slots;
 
-    //int money;
+    int distance;
     int killCount;
     int score;
     #endregion
@@ -42,15 +42,14 @@ public class GameManager : MonoBehaviour
         ObjectPool.Get.AddObjectPool("Blood");
     }
 
-    //public void AddMoney(int value)
-    //{
-    //    money += value;
-    //}
-
-    //public void ShowMoney()
-    //{
-    //    txtScore.text = money.ToString();
-    //}
+    public void ShowRemainBullet()
+    {
+        for (int i = 0; i < 4; i++)
+        {
+            Gun gun = player.Get_ListWeapon(i);
+            slots[i].ShowRemainBullet(gun.BulletCount);
+        }
+    }
 
     public void ChangeWeapon(GunType type)
     {
@@ -65,7 +64,7 @@ public class GameManager : MonoBehaviour
 
     public void ShowScore()
     {
-        txtScore.text = score.ToString();
+        txtScore.text = score + "pts";
     }
 
     public void AddKillCount()
@@ -76,6 +75,11 @@ public class GameManager : MonoBehaviour
     public void ShowKillcount()
     {
         txtKillCount.text = killCount.ToString();
+    }
+
+    public void ShowDistance()
+    {
+        txtDistance.text = distance + "m";
     }
 
     /// <summary>
