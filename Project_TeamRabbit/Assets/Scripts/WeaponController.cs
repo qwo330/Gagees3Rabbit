@@ -131,6 +131,6 @@ public class WeaponController : MonoBehaviour
 
     void Fire_ShotGun()
     {
-
+        currWeapon.transform.GetChild(2).gameObject.SetActive(true);
     }
 }

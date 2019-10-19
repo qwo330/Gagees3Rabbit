@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6773808781904254504
 Transform:
   m_ObjectHideFlags: 0
@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 6773808781904349704}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: -13.3909855, y: -1.988, z: -0.000000014539}
-  m_LocalScale: {x: 0.51214, y: 0.51214, z: 0.51214}
+  m_LocalScale: {x: 1.1061711, y: 1.1061711, z: 1.1061711}
   m_Children:
   - {fileID: 6773808781904254506}
   - {fileID: 6773808781904254510}
@@ -4707,7 +4707,7 @@ ParticleSystemRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 900
   m_RenderMode: 0
   m_SortMode: 0
   m_MinParticleSize: 0
@@ -9445,7 +9445,7 @@ ParticleSystemRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 900
   m_RenderMode: 0
   m_SortMode: 0
   m_MinParticleSize: 0
@@ -14057,7 +14057,7 @@ ParticleSystemRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 900
   m_RenderMode: 1
   m_SortMode: 2
   m_MinParticleSize: 0
