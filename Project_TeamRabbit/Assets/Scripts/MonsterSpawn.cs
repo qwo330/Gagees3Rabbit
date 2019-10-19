@@ -57,7 +57,6 @@ public class MonsterSpawn : MonoBehaviour
         //if (dir == 1)
         //    point *= Vector2.left;
 
-        GameManager.WriteLog(point);
         return point;
     }
 }
