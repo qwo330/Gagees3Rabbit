@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -21,11 +20,32 @@ public class WeaponSlot : MonoBehaviour
 
     public void SlotActive(GunType type)
     {
-        imgDisable.gameObject.SetActive(this.type != type);
+        bool isActive = this.type == type;
+
+        if (isActive == true)
+        {
+            StartCoroutine(PlayCoolTimeEffect());
+        }
+        else
+        {
+            imgDisable.fillAmount = 1;
+        }
     }
 
-    void PlayCoolTimeEffect()
+    IEnumerator PlayCoolTimeEffect()
     {
-        //imgDisable.fillAmount = 
+        GameManager.Get.swapCool = true;
+
+        float maxFrame = 60 * GameManager.Get.swapCoolTime;
+        float frame = maxFrame;
+
+        while (frame > 0)
+        {
+            frame--;
+            imgDisable.fillAmount = (frame / maxFrame);
+            yield return new WaitForEndOfFrame();
+        }
+
+        GameManager.Get.swapCool = false;
     }
 }
