@@ -45,6 +45,7 @@ public class WeaponController : MonoBehaviour
                 player.SetActive_Weapon(3);
                 break;
         }
+        GameManager.Get.ChangeWeapon(gunCode);
     }
 
     IEnumerator IE_WeaponProcess()

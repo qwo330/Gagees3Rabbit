@@ -52,10 +52,10 @@ public class GameManager : MonoBehaviour
     //    txtScore.text = money.ToString();
     //}
 
-    public void ChangeWeapon()
+    public void ChangeWeapon(GunType type)
     {
         foreach (var slot in slots)
-            slot.SlotActive(false);
+            slot.SlotActive(type);
     }
 
     public void AddScore(int value)
