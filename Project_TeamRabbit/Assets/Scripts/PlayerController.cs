@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] PlayerGroundCheck _groundCheck;
+    [SerializeField] GroundCheck _groundCheck;
 
     Rigidbody2D rigi2d;
 

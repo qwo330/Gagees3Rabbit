@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     #region Fields
-    public namPlayerController player;
+    public PlayerController player;
 
     [SerializeField]
     Text txtScore, txtMoney, txtKillCount;

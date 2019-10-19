@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerGroundCheck : MonoBehaviour
+public class GroundCheck : MonoBehaviour
 {
     public bool isGround = false;
 
