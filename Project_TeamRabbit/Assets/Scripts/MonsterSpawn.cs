@@ -19,7 +19,7 @@ public class MonsterSpawn : MonoBehaviour
     public void StartSpawn()
     {
         StartCoroutine(IE_Spawn());
-        //StartCoroutine(IE_Spawn2());
+        StartCoroutine(IE_Spawn2());
     }
 
     IEnumerator IE_Spawn()
@@ -43,8 +43,9 @@ public class MonsterSpawn : MonoBehaviour
         {
             yield return new WaitForSeconds(8f);
 
-            GameObject go = ObjectPool.Get.GetObject("Zombie2");
+            GameObject go = ObjectPool.Get.GetObject("ZombieThrow");
             Monster zombie = go.GetComponent<Monster>();
+            if (!go.activeInHierarchy) go.SetActive(true);
             zombie.Initialize();
             //int dir = Random.Range(0, 1);
             zombie.transform.position = GetSpawnPoint();

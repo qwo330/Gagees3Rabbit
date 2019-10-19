@@ -29164,6 +29164,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1368314596}
   gameState: 0
+  swapCoolTime: 1
   txtScore: {fileID: 6894850215521062994}
   txtKillCount: {fileID: 6894850216500804475}
   txtDistance: {fileID: 6894850217006498662}
@@ -29175,6 +29176,7 @@ MonoBehaviour:
   - {fileID: 5839660942330603100}
   - {fileID: 5839660942330603099}
   - {fileID: 5839660942330603098}
+  swapCool: 0
 --- !u!114 &447653280
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -54266,7 +54268,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &808960677
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -54281,11 +54283,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _target: {fileID: 0}
   _groundCheck: {fileID: 1956626613}
+  _animator: {fileID: 0}
   _state: 0
   _speed: 2
   _attackDist: 2
+  _damage: 4
   _currHP: 0
   _maxHP: 5
+  isBoneThrower: 0
 --- !u!50 &808960678
 Rigidbody2D:
   serializedVersion: 4
