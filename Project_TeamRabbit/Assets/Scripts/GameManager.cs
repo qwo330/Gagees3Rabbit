@@ -45,7 +45,8 @@ public class GameManager : MonoBehaviour
         //ObjectPool.Get.AddObjectPool(GunType.SniperRifle + "Bullet");
         //ObjectPool.Get.AddObjectPool(GunType.Shotgun + "Bullet");
         //ObjectPool.Get.AddObjectPool(GunType.Arrow + "Bullet");
-        ObjectPool.Get.AddObjectPool("Blood");
+        ObjectPool.Get.AddObjectPool("GroundHit");
+        ObjectPool.Get.AddObjectPool("ZombieHit");
 
         imgLife = bgLife.GetComponentInChildren<Image>();
     }
