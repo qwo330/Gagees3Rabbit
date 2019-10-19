@@ -53,6 +53,7 @@ public class Monster : MonoBehaviour
         
         if(_currHP <= 0)
         {
+            SoundManager.instance.Play_ZombieDead();
             StopAllCoroutines();
             StateMachine(State.Dead);
         }
@@ -82,8 +83,7 @@ public class Monster : MonoBehaviour
                 break;
         }
     }
-
-    float ratio = 0;
+    
     IEnumerator IE_Move()
     {
         distance = Vector2.Distance(transform.position, _target.transform.position);
