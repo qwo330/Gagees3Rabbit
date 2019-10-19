@@ -65,7 +65,7 @@ public class Monster : MonoBehaviour
                 StartCoroutine(IE_Attack());
                 break;
             case State.Dead:
-
+                gameObject.SetActive(false);
                 break;
             case State.Fall:
                 StartCoroutine(IE_Fall());
