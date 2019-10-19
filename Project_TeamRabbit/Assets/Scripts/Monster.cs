@@ -33,7 +33,7 @@ public class Monster : MonoBehaviour
         Initialize();
     }
     
-    private void Initialize()
+    public void Initialize()
     {   
         _currHP = _maxHP;
         StateMachine(State.Move);
