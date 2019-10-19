@@ -17,7 +17,6 @@ public class Bullet : MonoBehaviour
     {
         if (other.gameObject.layer.Equals(LayerMask.NameToLayer("Monster")))
         {
-            Debug.Log("Trigger Enter Monster");
             other.GetComponent<Monster>().TakeDamage(_damage);
 
             GameObject effect = ObjectPool.Get.GetObject("Blood");

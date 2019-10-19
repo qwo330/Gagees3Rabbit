@@ -63,15 +63,15 @@ public class WeaponController : MonoBehaviour
             transform.rotation = Quaternion.Euler(0, 0, AngleDeg);
 
             //마우스 위치에 따른 무기 및 팔 방향 보정
-            if (!(transform.eulerAngles.z < 90 && transform.eulerAngles.z > -90))
-            {
-                player.transform.localScale = leftDir;
-                armTr.localEulerAngles = new Vector3(0, 0, 180);
-            }
-            else
+            if (transform.eulerAngles.z < 90 && transform.eulerAngles.z > -90)
             {
                 player.transform.localScale = rightDir;
                 armTr.localEulerAngles = new Vector3(0, 0, 0);
+            }
+            else
+            {
+                player.transform.localScale = leftDir;
+                armTr.localEulerAngles = new Vector3(0, 0, 180);
             }
 
             if (Input.GetMouseButtonDown(0))
