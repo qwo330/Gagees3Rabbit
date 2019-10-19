@@ -45,6 +45,7 @@ public class GameManager : MonoBehaviour
 
         ObjectPool.Get.CreateObjectPool();
         ObjectPool.Get.AddObjectPool("Bullet");
+        ObjectPool.Get.AddObjectPool("ShotGun");
         //ObjectPool.Get.AddObjectPool(GunType.Carbine + "Bullet");
         //ObjectPool.Get.AddObjectPool(GunType.SniperRifle + "Bullet");
         //ObjectPool.Get.AddObjectPool(GunType.Shotgun + "Bullet");

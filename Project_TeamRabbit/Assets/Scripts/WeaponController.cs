@@ -131,6 +131,26 @@ public class WeaponController : MonoBehaviour
 
     void Fire_ShotGun()
     {
-        currWeapon.transform.GetChild(2).gameObject.SetActive(true);
+        GameObject effect = ObjectPool.Get.GetObject("ShotGun");
+        effect.transform.position = currWeapon.MuzzleEnd.position;
+        effect.transform.rotation = transform.rotation;
+        effect.SetActive(true);
+
+        StartCoroutine(IE_FireShotGun());
+    }
+
+    IEnumerator IE_FireShotGun()
+    {
+        ShotGunCollider collider = currWeapon.transform.GetChild(2).GetComponent<ShotGunCollider>();
+        collider.gameObject.SetActive(true);
+        yield return new WaitForSeconds(0.1f);
+
+        for(int i = 0; i < collider.hitMonsters.Count; i++)
+        {
+            collider.hitMonsters[i].TakeDamage(currWeapon.Demage);
+        }
+
+        collider.Clear_List();
+        collider.gameObject.SetActive(false);
     }
 }
