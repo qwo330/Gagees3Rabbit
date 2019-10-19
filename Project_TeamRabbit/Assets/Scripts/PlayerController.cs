@@ -44,6 +44,7 @@ public class PlayerController : MonoBehaviour
     private void Initialize()
     {
         _currHP = _maxHP;
+        playerMat.color = new Color(playerMat.color.r, playerMat.color.g, playerMat.color.b, 1);
 
         _weaponController.Set_CurrentWeapon(GunType.Revolver);
 
@@ -60,6 +61,8 @@ public class PlayerController : MonoBehaviour
         if(_currHP <= 0)
         {
             //게임오버
+
+            SoundManager.instance.Play_PlayerDead();
         }
         else
         {
@@ -149,6 +152,8 @@ public class PlayerController : MonoBehaviour
         {
             GameObject effect = null;
 
+            SoundManager.instance.Play_ItemDrop();
+
             switch(other.gameObject.name)
             {
                 case "Item_HealPack":
@@ -185,6 +190,7 @@ public class PlayerController : MonoBehaviour
     IEnumerator IE_Set_Hit()
     {
         isHit = true;
+        SoundManager.instance.Play_PlayerHit();
 
         playerMat.color = new Color(playerMat.color.r, playerMat.color.g, playerMat.color.b, 0.5f);
 

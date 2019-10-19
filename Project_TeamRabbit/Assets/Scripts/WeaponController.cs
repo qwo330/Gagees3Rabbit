@@ -107,6 +107,9 @@ public class WeaponController : MonoBehaviour
                 {
                     if(fireCoolTime <= 0)
                     {
+                        if (currWeapon.Type.Equals(GunType.Carbine)) SoundManager.instance.Play_Carbine();
+                        if (currWeapon.Type.Equals(GunType.SniperRifle)) SoundManager.instance.Play_Sniper();
+
                         Fire();
                         fireCoolTime = currWeapon.Delay;
                     }
@@ -131,6 +134,8 @@ public class WeaponController : MonoBehaviour
 
     void Fire_ShotGun()
     {
+        SoundManager.instance.Play_Shotgun();
+
         GameObject effect = ObjectPool.Get.GetObject("ShotGun");
         effect.transform.position = currWeapon.MuzzleEnd.position;
         effect.transform.rotation = transform.rotation;
