@@ -22,6 +22,8 @@ public class GameManager : MonoBehaviour
     Text txtScore, txtKillCount, txtDistance;
 
     [Header("UI")]
+    [SerializeField] GameObject titleUI;
+    [SerializeField] GameObject resultUI;
     [SerializeField]
     Image imgLife;
 

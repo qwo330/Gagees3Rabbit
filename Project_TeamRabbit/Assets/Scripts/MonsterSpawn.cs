@@ -13,7 +13,7 @@ public class MonsterSpawn : MonoBehaviour
 
     void Start()
     {
-        StartSpawn();
+        //StartSpawn();
     }
 
     public void StartSpawn()
