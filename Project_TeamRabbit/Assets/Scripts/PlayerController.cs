@@ -84,12 +84,12 @@ public class PlayerController : MonoBehaviour
                 }
                 if (Input.GetKeyDown(KeyCode.Alpha3))
                 {
-                    _weaponController.Set_CurrentWeapon(GunType.SniperRifle);
+                    _weaponController.Set_CurrentWeapon(GunType.Shotgun);
                     swapCoolTime = maxCoolTime;
                 }
                 if (Input.GetKeyDown(KeyCode.Alpha4))
                 {
-                    _weaponController.Set_CurrentWeapon(GunType.Shotgun);
+                    _weaponController.Set_CurrentWeapon(GunType.SniperRifle);
                     swapCoolTime = maxCoolTime;
                 }
             }

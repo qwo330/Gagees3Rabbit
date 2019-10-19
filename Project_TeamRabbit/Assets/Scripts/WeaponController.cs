@@ -37,12 +37,12 @@ public class WeaponController : MonoBehaviour
                 player.SetActive_Weapon(1);
                 break;
             case GunType.SniperRifle:
-                currWeapon = player.Get_ListWeapon(2);
-                player.SetActive_Weapon(2);
-                break;
-            case GunType.Shotgun:
                 currWeapon = player.Get_ListWeapon(3);
                 player.SetActive_Weapon(3);
+                break;
+            case GunType.Shotgun:
+                currWeapon = player.Get_ListWeapon(2);
+                player.SetActive_Weapon(2);
                 break;
         }
         GameManager.Get.ChangeWeapon(gunCode);
