@@ -15,4 +15,14 @@ public class GameManager : MonoBehaviour
     {
         
     }
+
+    /// <summary>
+    /// 에디터에서만 디버그 로그를 찍는다.
+    /// </summary>
+    public static void WriteLog(object message, Object context = null)
+    {
+#if UNITY_EDITOR
+        Debug.Log(message, context);
+#endif
+    }
 }
