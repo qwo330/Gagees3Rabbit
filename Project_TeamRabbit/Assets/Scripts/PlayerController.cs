@@ -19,6 +19,8 @@ public class PlayerController : MonoBehaviour
     float v, h;
     [SerializeField] float _speed = 5f;
     [SerializeField] float _jumpVelocity = 3f;
+    [SerializeField] float _currHP;
+    [SerializeField] float _maxHP = 100;
 
     private void Awake()
     {
@@ -27,7 +29,15 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
+        Initialize();
+    }
+
+    private void Initialize()
+    {
+        _weaponController.Set_CurrentWeapon(GunType.Revolver);
+
         StartCoroutine(IE_PlayerController());
+        StartCoroutine(IE_WeaponSwap());
     }
 
     IEnumerator IE_PlayerController()
@@ -56,9 +66,36 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator IE_WeaponSwap()
     {
+        float swapCoolTime = 0;
+        float maxCoolTime = 1;
         while(true)
         {
+            if (swapCoolTime < 0)
+            {
+                if (Input.GetKeyDown(KeyCode.Alpha1))
+                {
+                    _weaponController.Set_CurrentWeapon(GunType.Revolver);
+                    swapCoolTime = maxCoolTime;
+                }
+                if (Input.GetKeyDown(KeyCode.Alpha2))
+                {
+                    _weaponController.Set_CurrentWeapon(GunType.Carbine);
+                    swapCoolTime = maxCoolTime;
+                }
+                if (Input.GetKeyDown(KeyCode.Alpha3))
+                {
+                    _weaponController.Set_CurrentWeapon(GunType.SniperRifle);
+                    swapCoolTime = maxCoolTime;
+                }
+                if (Input.GetKeyDown(KeyCode.Alpha4))
+                {
+                    _weaponController.Set_CurrentWeapon(GunType.Shotgun);
+                    swapCoolTime = maxCoolTime;
+                }
+            }
+            else swapCoolTime -= Time.deltaTime;
 
+            yield return null;
         }
     }
 
@@ -72,6 +109,11 @@ public class PlayerController : MonoBehaviour
             }
             else _weaponList[i].SetActive(false);
         }
+    }
+
+    public Gun Get_ListWeapon(int listIndex)
+    {
+        return _weaponList[listIndex].GetComponent<Gun>();
     }
 }
 

@@ -29,16 +29,20 @@ public class WeaponController : MonoBehaviour
         switch (gunCode)
         {
             case GunType.Revolver:
+                currWeapon = player.Get_ListWeapon(0);
                 player.SetActive_Weapon(0);
                 break;
             case GunType.Carbine:
-
+                currWeapon = player.Get_ListWeapon(1);
+                player.SetActive_Weapon(1);
                 break;
             case GunType.SniperRifle:
-
+                currWeapon = player.Get_ListWeapon(2);
+                player.SetActive_Weapon(2);
                 break;
             case GunType.Shotgun:
-
+                currWeapon = player.Get_ListWeapon(3);
+                player.SetActive_Weapon(3);
                 break;
         }
     }
