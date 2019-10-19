@@ -19,14 +19,9 @@ public class ObjectPool : MonoBehaviour
     }
     Dictionary<string, Stack<GameObject>> Pool;
 
-    void Awake()
+    public void CreateObjectPool()
     {
-        CreateObjectPool();
         DontDestroyOnLoad(this);
-    }
-
-    void CreateObjectPool()
-    {
         Pool = new Dictionary<string, Stack<GameObject>>();
     }
 

@@ -1,19 +1,95 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    #region Fields
+    public namPlayerController player;
+
+    [SerializeField]
+    Text txtScore, txtMoney, txtKillCount;
+
+    int money;
+    int killCount;
+    int score;
+    #endregion
+
+    static GameManager instance;
+    public static GameManager Get
     {
-        
+        get
+        {
+            return instance;
+        }
     }
 
-    // Update is called once per frame
+    void Awake()
+    {
+        instance = this;
+        DontDestroyOnLoad(this);
+        ObjectPool.Get.CreateObjectPool();
+    }
+
     void Update()
     {
-        
+        if (Input.anyKey)
+            SwapWeapon();
+    }
+
+    void SwapWeapon()
+    {
+        if (Input.GetKey(KeyCode.Alpha1))
+        {
+            WriteLog("권총");
+        }
+        else if(Input.GetKey(KeyCode.Alpha2))
+        {
+            WriteLog("카빈");
+        }
+        else if (Input.GetKey(KeyCode.Alpha3))
+        {
+            WriteLog("저격");
+        }
+        else if (Input.GetKey(KeyCode.Alpha4))
+        {
+            WriteLog("샷건");
+        }
+        else if (Input.GetKey(KeyCode.Alpha5))
+        {
+            WriteLog("활");
+        }
+    }
+
+    public void AddMoney(int value)
+    {
+        money += value;
+    }
+
+    public void ShowMoney()
+    {
+        txtScore.text = money.ToString();
+    }
+
+    public void AddScore(int value)
+    {
+        score += value;
+    }
+
+    public void ShowScore()
+    {
+        txtScore.text = score.ToString();
+    }
+
+    public void AddKillCount()
+    {
+        killCount++;
+    }
+
+    public void ShowKillcount()
+    {
+        txtKillCount.text = killCount.ToString();
     }
 
     /// <summary>
