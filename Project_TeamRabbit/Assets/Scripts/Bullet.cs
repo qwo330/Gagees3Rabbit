@@ -19,7 +19,14 @@ public class Bullet : MonoBehaviour
         {
             other.GetComponent<Monster>().TakeDamage(_damage);
 
-            GameObject effect = ObjectPool.Get.GetObject("Blood");
+            //GameObject effect = ObjectPool.Get.GetObject("Blood");
+            GameObject effect = ObjectPool.Get.GetObject("ZombieHit");
+            effect.transform.position = transform.position;
+            effect.SetActive(true);
+        }
+        else
+        {
+            GameObject effect = ObjectPool.Get.GetObject("GroundHit");
             effect.transform.position = transform.position;
             effect.SetActive(true);
         }
