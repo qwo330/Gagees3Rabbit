@@ -15,16 +15,17 @@ public class Bullet : MonoBehaviour
     
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.gameObject.layer.Equals(LayerMask.NameToLayer("Monster")))
+        if (other.gameObject.layer.Equals(LayerMask.NameToLayer("Monster")))
         {
+            Debug.Log("Trigger Enter Monster");
             other.GetComponent<Monster>().TakeDamage(_damage);
 
             GameObject effect = ObjectPool.Get.GetObject("Blood");
-            effect.transform.position = other.transform.position;
+            effect.transform.position = transform.position;
             effect.SetActive(true);
-
-            ObjectPool.Get.ReturnObject(gameObject);
-            gameObject.SetActive(false);
         }
+
+        ObjectPool.Get.ReturnObject(gameObject);
+        gameObject.SetActive(false);
     }
 }
