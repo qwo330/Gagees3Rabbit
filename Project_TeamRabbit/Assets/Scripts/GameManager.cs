@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public enum GameState
 {
@@ -22,6 +23,8 @@ public class GameManager : MonoBehaviour
     Text txtScore, txtKillCount, txtDistance;
 
     [Header("UI")]
+    [SerializeField] GameObject titleUI;
+    [SerializeField] GameObject resultUI;
     [SerializeField]
     Image imgLife;
 
@@ -120,6 +123,18 @@ public class GameManager : MonoBehaviour
     public void ShowDistance()
     {
         txtDistance.text = distance.ToString();
+    }
+
+    public void GameOver()
+    {
+        gameState = GameState.Fail;
+
+        resultUI.SetActive(true);
+    }
+
+    public void UI_BackToTitle()
+    {
+        SceneManager.LoadScene("Stage_Forest");
     }
 
     /// <summary>
