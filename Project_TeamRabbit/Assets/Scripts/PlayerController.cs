@@ -61,6 +61,7 @@ public class PlayerController : MonoBehaviour
         if(_currHP <= 0)
         {
             //게임오버
+            GameManager.Get.GameOver();
 
             SoundManager.instance.Play_PlayerDead();
         }
@@ -72,7 +73,7 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator IE_PlayerController()
     {
-        while (true)
+        while (GameManager.Get.gameState == GameState.Play)
         {
             h = Input.GetAxis("Horizontal");
 
@@ -98,7 +99,7 @@ public class PlayerController : MonoBehaviour
     {
         float swapCoolTime = 0;
         float maxCoolTime = 1;
-        while(true)
+        while(GameManager.Get.gameState == GameState.Play)
         {
             if (swapCoolTime < 0)
             {
