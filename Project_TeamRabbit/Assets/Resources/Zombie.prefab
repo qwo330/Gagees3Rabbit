@@ -269,7 +269,7 @@ MonoBehaviour:
   _animator: {fileID: 66215049125490259}
   _state: 0
   _speed: 20
-  _attackDist: 1
+  _attackDist: 4
   _damage: 4
   _currHP: 0
   _maxHP: 5
